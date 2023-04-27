@@ -1,7 +1,8 @@
-var items = document.getElementsByClassName('list-group-item');
-console.log(items);
-items[0].style.fontWeight = 'bold';
-items[1].style.fontWeight = 'bold';
-items[2].style.fontWeight = 'bold';
-items[3].style.fontWeight = 'bold';
-items[2].style.backgroundColor = 'green';
+var li = document.getElementsByTagName('li');
+console.log(li);
+li[0].style.fontWeight = 'bold';
+li[1].style.fontWeight = 'bold';
+li[2].style.fontWeight = 'bold';
+li[3].style.fontWeight = 'bold';
+li[2].style.backgroundColor = 'green';
+
