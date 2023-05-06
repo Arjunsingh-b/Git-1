@@ -1,47 +1,55 @@
-var itemList = document.querySelector('#items');
-console.log(itemList.parentNode0);
-itemList.parentNode.style.backgroundColor = '#f4f4f4';
+var form = document.getElementById('addForm');
+var itemList = document.getElementById('items');
 
-console.log(itemList.parentElement);
+// Form submit event
+form.addEventListener('submit', addItem);
+// Delete event
+itemList.addEventListener('click', removeItem);
 
-console.log(itemList.lastelementchild);
-itemList.lastElementChild.style.backgroundColor = 'yellow';
+// Add item
+function addItem(e){
+  e.preventDefault();
 
-console.log(itemList.lastChild);
+  // Get input value
+  var newItem = document.getElementById('item').value;
 
-console.log(itemList.createChild);
+  // Create new li element
+  var li = document.createElement('li');
+  // Add class
+  li.className = 'list-group-item';
+  // Add text node with input value
+  li.appendChild(document.createTextNode(newItem));
 
-console.log(itemList.firstChild);
+  // Create del button element
+  var deleteBtn = document.createElement('button');
 
-console.log(itemList.firstElementChild);
+  // Add classes to del button
+  deleteBtn.className = 'btn btn-danger btn-sm float-right delete';
 
-console.log(itemList.nextSibling);
+  // Append text node
+  deleteBtn.appendChild(document.createTextNode('X'));
 
-console.log(itemList.nextElementSibling);
+  // Append button to li
+  li.appendChild(deleteBtn);
 
-console.log(itemList.previousSibling);
+  // Append li to list
+  itemList.appendChild(li);
+}
 
-console.log(itemList.previousElementSibling);
+// Remove item
+function removeItem(e){
+  if(e.target.classList.contains('delete')){
+    if(confirm('Are You Sure?')){
+      var li = e.target.parentElement;
+      itemList.removeChild(li);
+    }
+  }
+}
 
-var newDiv = document.createElement('div');
-
-newDiv.className= 'hello';
-
-newDiv.id = 'hello1';
-
-newDiv.setAttribute('title', 'Hello Div');
-
-var newDivText = document.createTextNode('Hello world');
-
-newDiv.appendChild(newDivText);
-
-var container = document.querySelector('header .container');
-var h1 = document.querySelector('header h1');
-
-
-console.log(newDiv);
-
-
-
-container.insertBefore(newDiv, h1);
-
+var itemsList = document.querySelectorAll(".list-group-item");
+itemsList.forEach(function(item) {
+  var editBtn = document.createElement("button");
+  editBtn.classList.add("btn", "btn-secondary", "btn-sm", "float-right", "edit", "mr-2");
+  editBtn.textContent = "Edit";
+  item.appendChild(editBtn);
+});
